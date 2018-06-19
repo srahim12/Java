@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/q_ueen"
+        android:title="Queen"/>
+    <item
+        android:id="@+id/r_ook"
+        android:title="Rook"/>
+    <item
+        android:id="@+id/k_night"
+        android:title="Knight"/>
+    <item
+        android:id="@+id/b_ishop"
+        android:title="Bishop"/>
+
+</menu>
