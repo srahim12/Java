@@ -1,0 +1,90 @@
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
+public class RemoveDuplicates2.1{
+
+    public static void main(String[] args){
+        LinkedList l = new LinkedList();
+        l.addFront(1);
+        l.addFront(1);
+        l.addFront(7);
+        l.addFront(45);
+        l.addFront(45);
+        l.addFront(4);
+        l.addFront(5);
+        l.addFront(1);
+        l.addFront(9);
+        l.print();
+        l = remDups(l);
+        l.print();
+    }
+    
+    static LinkedList remDups(LinkedList l){
+        HashMap<Integer,Integer> map = new HashMap<>();
+        Node ptr = l.head;
+        Node prev = ptr;
+        int i = 0;
+        int j = 0;
+        while(ptr.next!=null){
+            if(map.containsKey(ptr.data)){
+                prev.next = ptr.next;
+                if(ptr.next.next == null){
+                    ptr = ptr.next;
+                    break;
+                }
+            }else{
+                map.put(ptr.data,i);
+                i++;
+            }
+            prev = ptr;
+            ptr = ptr.next;
+            j++;
+        }
+        if(map.containsKey(ptr.data))
+            prev.next = null;
+        return l;
+    }
+}
+class Node{
+    public Node next;
+    int data;
+    
+    public Node(Node next, int data){
+        this.next = next;
+        this.data = data;
+    }
+    public Node(){}
+}
+
+class LinkedList{
+    public Node head;
+    int size;
+    
+    public LinkedList(){
+        head = null;
+        size = 0;
+    }
+    public void addFront(int data){
+        Node n = new Node(null,data);
+        if(head == null){
+            head = n;
+            return;
+        }
+        n.next = this.head;
+        head = n;
+    }
+    public void print(){
+        if(head==null)
+            return;
+        Node ptr = this.head;
+        while(ptr!=null){
+            System.out.print(ptr.data+ "---->");
+            ptr = ptr.next;
+        }
+        System.out.println();
+    }
+}
+
+
+Runtime: O(N)

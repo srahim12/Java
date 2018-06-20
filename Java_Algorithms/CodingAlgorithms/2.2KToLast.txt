@@ -1,0 +1,76 @@
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
+public class KToLast2.2{
+
+    public static void main(String[] args){
+        LinkedList l = new LinkedList();
+        l.addFront(1);
+        l.addFront(7);
+        l.addFront(45);
+        l.addFront(4);
+        l.addFront(5);
+        l.addFront(1);
+        l.addFront(9);
+        l.print();
+        System.out.println(kToLast(l,5));
+    }
+    
+    static int kToLast(LinkedList l, int k){
+        if(l.head == null)
+            return -1;
+        Node ptr = l.head;
+        int len = 0;
+        while(ptr != null){
+            len++;
+            ptr = ptr.next;
+        }
+        ptr = l.head;
+        for(int i = 0;i<(len-k);i++){
+            ptr = ptr.next;
+        }
+        return ptr.data;
+    }
+}
+class Node{
+    public Node next;
+    int data;
+    
+    public Node(Node next, int data){
+        this.next = next;
+        this.data = data;
+    }
+    public Node(){}
+}
+
+class LinkedList{
+    public Node head;
+    int size;
+    
+    public LinkedList(){
+        head = null;
+        size = 0;
+    }
+    public void addFront(int data){
+        Node n = new Node(null,data);
+        if(head == null){
+            head = n;
+            return;
+        }
+        n.next = this.head;
+        head = n;
+    }
+    public void print(){
+        if(head==null)
+            return;
+        Node ptr = this.head;
+        while(ptr!=null){
+            System.out.print(ptr.data+ "---->");
+            ptr = ptr.next;
+        }
+        System.out.println();
+    }
+}
+
+Runtime: O(N)

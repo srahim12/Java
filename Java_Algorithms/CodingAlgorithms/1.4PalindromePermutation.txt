@@ -1,0 +1,55 @@
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.List;
+public class PalindromePermutation1.4{
+
+    public static void main(String[] args){
+        String str = "Tttgg";
+        System.out.println(palPerm(str));
+    }
+    
+    static boolean palPerm(String str){
+        StringBuilder sb  = new StringBuilder();
+        int odd = 0;
+        String[] words = str.split(" ");
+        for(String w: words){
+            sb.append(w);
+        }
+        char[] lA = sb.toString().toCharArray();
+        int arrLen = lA.length;
+        Arrays.sort(lA);
+        for(int i = 0;i<lA.length;i++){
+            if(arrLen % 2 ==0){
+                if(i == arrLen-2){
+                    if(lA[i] != lA[i+1])
+                        return false;
+                    break;
+                }
+                if(lA[i] != lA[i+1])
+                    return false;
+                else
+                    i++;
+            }
+            else{
+                if(i == arrLen-2){
+                    if(lA[i] != lA[i+1]){
+                        if(odd>0)
+                            return false;
+                        break;
+                    }
+                    if(lA[i] != lA[i+1]){
+                        if(odd>0)
+                            return false;
+                        odd++;
+                    }
+                    else
+                        i++;
+                }
+            }
+        }
+        return true;
+    }
+}
+
+Runtime: O(NlogN)

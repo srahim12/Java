@@ -1,0 +1,101 @@
+public class SumLists{
+
+     public static void main(String []args){
+        LinkedList l1 = new LinkedList();
+        l1.addBack(7);
+        l1.addBack(1);
+        l1.addBack(6);
+        LinkedList l2 = new LinkedList();
+        l2.addBack(9);
+        l2.addBack(2);
+        LinkedList l3 = new LinkedList();
+        l1.print();
+        l2.print();
+        System.out.println();
+        l3 = SumLists(l1,l2);
+        l3.print();
+     }
+     static void print(String str){
+         System.out.println(str);
+     }
+     static LinkedList SumLists(LinkedList l1, LinkedList l2){
+         Node numOne = null;
+         Node numTwo = null;
+         int total = 0;
+         int carry = 0;
+         LinkedList l3 = new LinkedList();
+         if(l1.head!=null) numOne = l1.head;
+         if(l2.head!=null) numTwo = l2.head;
+         while(numOne!=null||numTwo!=null){
+            total = 0;
+            if(numOne!=null) total+= numOne.data;
+            if(numTwo!=null) total+= numTwo.data;
+            if(total+carry >9){
+                l3.addBack((total+carry)-10);
+                carry = 1;
+            }
+            else{
+                l3.addBack(total+carry);
+                carry = 0;
+            }
+            if(numOne!=null) numOne = numOne.next;
+            if(numTwo!=null) numTwo = numTwo.next;
+        }
+        return l3;
+     }
+}
+class Node{
+    public Node next;
+    int data;
+    
+    public Node(int data, Node next){
+        this.next = next;
+        this.data = data;
+    }
+    public Node(){}
+}
+class LinkedList{
+    public Node head;
+    int size;
+    
+    public LinkedList(){
+        head = null;
+        size = 0;
+    }
+    public void addFront(int data){
+        Node n = new Node(data,null);
+        if(head == null){
+            head = n;
+            return;
+        }
+        n.next = this.head;
+        head = n;
+    }
+    public void addBack(int data){
+        Node n = new Node(data, null);
+        if(head==null){
+            head = n;
+            return;
+        }
+        Node ptr = head;
+        while(ptr!=null){
+            if(ptr.next == null){
+                ptr.next = n;
+                return;
+            }
+            ptr = ptr.next;
+        }
+    }
+    public void print(){
+        if(head==null)
+            return;
+        Node ptr = this.head;
+        while(ptr!=null){
+            System.out.print(ptr.data+ "---->");
+            ptr = ptr.next;
+        }
+        System.out.println();
+    }
+}
+
+Runtime: O(N^2)

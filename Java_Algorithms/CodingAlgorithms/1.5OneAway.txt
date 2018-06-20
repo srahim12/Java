@@ -1,0 +1,42 @@
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.List;
+public class OneAway1.5{
+
+    public static void main(String[] args){
+        String str1 = "pale";
+        String str2 = "bale";
+        System.out.println(OneAway(str1,str2));
+    }
+    
+    static boolean OneAway(String str1, String str2){
+        LinkedList<String>[] arr = new LinkedList[str1.length()];
+        boolean missing = false; 
+        for(int i = 0; i < str1.length();i++){
+            String charToStr = Character.toString(str1.charAt(i));
+            int hashVal = charToStr.hashCode() % str1.length();
+            if(arr[hashVal] == null)
+                arr[hashVal] = new LinkedList<String>();
+            arr[hashVal].add(charToStr);
+        }
+        for(int j = 0; j< str2.length();j++){
+            String charToStr = Character.toString(str2.charAt(j));
+            int hashVal = charToStr.hashCode() % str1.length();
+            if(arr[hashVal] == null || !arr[hashVal].contains(charToStr)){
+                if(missing)
+                    return false;
+                missing = true;
+            }
+        }
+        if(!missing && (str1.length()!=str2.length())){
+            if(str1.length()-1==str2.length() || str1.length()+1==str2.length())
+                return true;            
+            return false;
+        }
+        return true;
+    }
+    
+}
+
+RunTime: O(N*D)

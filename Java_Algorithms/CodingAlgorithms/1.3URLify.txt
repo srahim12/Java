@@ -1,0 +1,27 @@
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.List;
+public class URLify1.3{
+
+    public static void main(String[] args){
+        String str = "Mr John Smith ";
+        System.out.println(URLify(str));
+    }
+    
+    static String URLify(String str){
+        StringBuilder output = new StringBuilder();
+        String[] array = str.split(" ");
+        for(int i = 0 ; i<array.length;i++){
+            if(i==array.length-1)
+                break;
+            array[i] += "%20";
+        }
+        for(String w : array){
+            output.append(w);
+        }
+        return output.toString();
+    }
+}
+
+Runtime: O(N)
