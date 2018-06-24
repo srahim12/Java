@@ -1,7 +1,5 @@
 //Programmed by Shah Rahim
 
-
-
 class Sort{
     
     private Stack sortStack;
@@ -48,66 +46,5 @@ class Sort{
         return;           
     }
     
-    public Stack getSortedStack(){
-        return sortStack;
-    }
-    
-    public void printStack(Stack s){
-        int stack_size = s.getSize();
-        for(int i = 0;i < stack_size;i++){
-            System.out.println(s.pop());
-        }
-    }
-}
-
-class Stack{
-    private static class StackNode{
-        private int data;
-        private StackNode next;
-        
-        public StackNode(int data) {
-            this.data = data;
-        }
-    }
-    
-    private StackNode top;
-    private StackNode min;
-    private int size = 0;    
-
-    public int pop(){
-        if(top == null) return -1;
-        int item = top.data;
-        top = top.next;
-        size--;
-        return item;
-    }
-    
-    public void push(int item){
-        StackNode t = new StackNode(item);
-        t.next = top;
-        size++;
-        top = t;
-        if(min==null) min = t;
-        else if(t.data<min.data){
-            min = t;
-        }
-    }
-    
-    public int peek(){
-        if(top == null) return -1;
-        return top.data;
-    }
-    
-    public boolean isEmpty(){
-        return (top == null);
-    }
-    
-    public int min(){
-        return min.data;
-    }
-    
-    public int getSize(){
-        return size;
-    }   
 }
 
