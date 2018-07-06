@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Hulton</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+<style type="text/css">
+		.head{
+			background: #2c3e50;
+		}
+
+		.jumb{
+			background-color:  #d9e6f2; 
+		}
+
+		.jumbotron{
+    		background-color:transparent !important; 
+		}
+
+	</style>
+<script type="text/javascript">
+		function validateForm(){
+			alert("Please LogIn or Resgister before making reservation");
+		}
+		function logIn(){
+			alert("Please LogIn or registerto log out!");
+		}
+
+	</script>
+</head>
+<body>
+<nav class="navbar navbar-inverse head">
+<div class="container">
+<div class="navbar-header">
+<button aria-expanded="false" class="navbar-toggle collapsed" data-target="#bs-nav-demo" data-toggle="collapse" type="button">
+<span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</button>
+<a class="navbar-brand" href="/Hulton_Start_Home">Hulton</a>
+</div>
+<div class="collapse navbar-collapse" id="bs-nav-demo">
+<ul class="nav navbar-nav">
+<li><a href="/Hulton_Start_Home" onclick="validateForm()">Reservation</a></li>
+</ul>
+<ul class="nav navbar-nav navbar-right">
+<li><a href="/Hulton_Login">Login</a></li>
+<li><a href="/Hulton_Start_Home" onclick="logIn()">Logout</a></li>
+<li><a href="/Hulton_Register">Register</a></li>
+</ul>
+</div>
+</div>
+</nav>
+<div class="container">
+<div class="jumbotron" id="jumb">
+<h1>Come Stay With Us</h1>
+<p>Best Service in the business</p>
+<button class="btn btn-success btn-lg">Leave a Review</button>
+<a class="btn btn-success btn-lg" href="/#" role="button">View Our Stats</a>
+</div>
+<div class="row">
+<div class="col-lg-12">
+<div class="thumbnail">
+<img src="http://streamafrica.com/wp-content/uploads/2016/01/hotels-4.jpg"/>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Form Submission</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<script th:src="@{https://code.jquery.com/jquery-3.2.1.js}"></script>
+<link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css}"/>
+<link rel="stylesheet" th:href="@{/resources/css/register.css}"/>
+<script type="text/javascript">
+		function cant(){
+			alert("Cant do that");
+			return false;
+		}
+		function validateForm() {
+			var roomNo = document.getElementById("roomNo").value;
+			var american = document.getElementById("american");
+			var americanAmt = document.getElementById("americanAmt").value;
+			var french = document.getElementById("french");
+			var frenchAmt = document.getElementById("frenchAmt").value;
+			var italian = document.getElementById("italian");
+			var italianAmt = document.getElementById("italianAmt").value;
+			
+			if(roomNo.length<1 || roomNo==0){
+				alert("Enter a valid room number!");
+				return false;
+			}
+			else if(american.checked == true && (americanAmt.length<1||americanAmt<1)){
+				alert("Enter the breakfast amount for checked breakfast item!");
+				return false;
+			}
+			else if(french.checked == true && (frenchAmt.length<1||frenchAmt<1)){
+				alert("Enter the breakfast amount for checked breakfast item!");
+				return false;
+			}
+			else if(italian.checked == true && (italianAmt.length<1||italianAmt<1)){
+				alert("Enter the breakfast amount for checked breakfast item!");
+				return false;
+			}
+			else if(american.checked == false && (americanAmt.length>1||americanAmt>0)){
+				alert("Enter the breakfast amount for checked breakfast item!");
+				return false;
+			}
+			else if(french.checked == false && (frenchAmt.length>1||frenchAmt>0)){
+				alert("Enter the breakfast amount for checked breakfast item!");
+				return false;
+			}
+			else if(italian.checked == false && (italianAmt.length>1||italianAmt>0)){
+				alert("Enter the breakfast amount for checked breakfast item!");
+				return false;
+			}
+			return true;
+		}
+		
+	</script>
+<style type="text/css">
+		.head{
+			background: #2c3e50;
+		}
+
+		.jumb{
+			background-color:  #d9e6f2; 
+		}
+
+		.jumbotron{
+    		background-color:transparent !important; 
+		}
+		#selectd{
+			color: green;
+		}
+		.pad{
+			text-align:right;
+		}
+
+	</style>
+</head>
+<body>
+<nav class="navbar navbar-inverse head">
+<div class="container">
+<div class="navbar-header">
+<button aria-expanded="false" class="navbar-toggle collapsed" data-target="#bs-nav-demo" data-toggle="collapse" type="button">
+<span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</button>
+<a class="navbar-brand" href="/Hulton_Home">Hulton</a>
+</div>
+<div class="collapse navbar-collapse" id="bs-nav-demo">
+<ul class="nav navbar-nav">
+<li><a href="/Hulton_Reservation_LookUp" id="selectd">Reservation</a></li>
+</ul>
+<ul class="nav navbar-nav navbar-right">
+<li><a href="/#"><p id="usrCid" th:text="'Welcome! ' +  'CID: ' +  ${4}"></p></a></li>
+<li><a href="/Hulton_Start_Home">Logout</a></li>
+<li><a href="/#" onclick="cant()">Register</a></li>
+</ul>
+</div>
+</div>
+</nav>
+<div class="container">
+<form action="#" class="form-horizontal" method="post" name="myForm" onsubmit="return validateForm()" th:action="@{/Hulton_Choose_Order}" th:object="${roomSelection}">
+<div class="form-group">
+<label class="col-sm-2 control-label" for="inputPhone">Choose room</label>
+<div class="col-sm-10">
+<input class="form-control" id="roomNo" placeholder="room number" required="" th:field="*{roomNo}" type="text"/>
+</div>
+</div>
+<p>Add Breakfast</p>
+<div class="form-group">
+<label class="col-sm-2 control-label" for="typeAm">American</label>
+<div class="col-sm-6">
+<input class="pad" id="american" name="typeAm" th:field="*{american}" type="checkbox" value="American"/>
+<input class="form-control" id="americanAmt" placeholder="how many?" th:field="*{americanAmt}" type="text"/>
+</div>
+</div>
+<div class="form-group">
+<label class="col-sm-2 control-label" for="typeFr">French</label>
+<div class="col-sm-6">
+<input class="pad" id="french" name="typeFr" th:field="*{french}" type="checkbox" value="French"/>
+<input class="form-control" id="frenchAmt" placeholder="how many?" th:field="*{frenchAmt}" type="text"/>
+</div>
+</div>
+<div class="form-group">
+<label class="col-sm-2 control-label" for="typeIt">Italian</label>
+<div class="col-sm-6">
+<input class="pad" id="italian" name="type" th:field="*{italian}" type="checkbox" value="Italian"/>
+<input class="form-control" id="italianAmt" placeholder="how many?" th:field="*{italianAmt}" type="text"/>
+</div>
+</div>
+<p>Add Services</p>
+<div class="form-group">
+<label class="col-sm-2 control-label" for="inputService">Service</label>
+<div class="col-sm-6">
+<label class="col-sm-2 control-label" for="type1">Pickup</label>
+<input class="form-control" id="serv1" name="type1" th:field="*{pickUp}" type="checkbox" value="Pick Up"/>
+<label class="col-sm-2 control-label" for="type2">Drop Off</label>
+<input class="form-control" id="serv2" name="type2" th:field="*{dropOff}" type="checkbox" value="Drop Off"/>
+<label class="col-sm-2 control-label" for="type3">Parking</label>
+<input class="form-control" id="serv3" name="type3" th:field="*{parking}" type="checkbox" value="Parking"/>
+</div>
+</div>
+<div class="form-group">
+<div class="col-sm-offset-2 col-sm-10">
+<input class="btn btn-success btn-lg" onclick="validateForm()" type="submit" value="Select"/>
+</div>
+</div>
+</form></div>
+</body></html>
+<div class="row">
+<div class="col-lg-12">
+<div class="thumbnail">
+<img src="http://cdn-image.travelandleisure.com/sites/default/files/styles/1600x1000/public/1494020442/62-tierra-atacama-boutique-hotel-and-spa-WBTOPHOTELS0505.jpg?itok=A2cqxQyJ"/>
+</div>
+</div>
+</div>
+<script th:inline="javascript">
+		/*<![CDATA[*/
+		var usrCid = document.getElementById("usrCid");
+	    var message = sessionStorage.userCid;
+	    usrCid.textContent="Welcome! CID: " + message; 
+	    console.log(message);
+		/*]]>*/
+	</script>

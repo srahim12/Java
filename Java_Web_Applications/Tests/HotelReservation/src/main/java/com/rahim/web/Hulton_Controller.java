@@ -1,7 +1,10 @@
-package com.raahim.web;
+package com.rahim.web;
 
-import com.raahim.domain.*;
-import com.raahim.query.Query;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import org.joda.time.DateTime;
 import org.joda.time.Interval;
 import org.slf4j.Logger;
@@ -14,10 +17,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.support.SessionStatus;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import com.rahim.domain.BreakReviewInfo;
+import com.rahim.domain.Breakfast_Review;
+import com.rahim.domain.Customer;
+import com.rahim.domain.FindRoom;
+import com.rahim.domain.HighestRate;
+import com.rahim.domain.Login;
+import com.rahim.domain.Payment;
+import com.rahim.domain.RateRes;
+import com.rahim.domain.RatedCus;
+import com.rahim.domain.Reciept;
+import com.rahim.domain.ReviewType;
+import com.rahim.domain.Room;
+import com.rahim.domain.RoomReviewInfo;
+import com.rahim.domain.RoomSelection;
+import com.rahim.domain.Room_Review;
+import com.rahim.domain.Search;
+import com.rahim.domain.SerReviewInfo;
+import com.rahim.domain.Service_Review;
+import com.rahim.domain.StatDate;
+import com.rahim.query.Query;
 
 @Controller
 
@@ -38,31 +57,37 @@ public class Hulton_Controller {
     int revHotel;
     
     //When the project boots up, the webpage displayed is the start home page
-    @RequestMapping("")
+    @RequestMapping("/")
 	public String Hulton_Start(ModelMap model){
+		System.out.println("Hulton_Start1");
+		//return "Hulton_Start_Home";
 		return "Hulton_Start_Home";
 	}
-    
+
+
     //If the user makes a request for the start home page, they will be redirected to it
     @RequestMapping("Hulton_Start_Home")
 	public String Hulton_Start_Home(ModelMap model){
+		System.out.println("Hulton_Start2");
 		return "Hulton_Start_Home";
 	}
     
     //This is the customer Home page which is served when requested for
     @RequestMapping("Hulton_Home")
 	public String Hulton_Login_Home(ModelMap model){
+    	System.out.println("Hulton_Home");
     	findRooms.clear();
     	roomOrders.clear();
     	daysStay.clear();
 		return "Hulton_Home";
 	}
     
-    /*When the user makes a get request for the registration page, they will be served the page with the 
+    /*When the user makes a get request for the registration page, they will be served the page with the
     	customer object initialized with this webpage for html injection*/
-    @RequestMapping(value="/Hulton_Register", method=RequestMethod.GET)
+    @RequestMapping(value="Hulton_Register", method=RequestMethod.GET)
     public String customerForm(Model model) {
-        model.addAttribute("customer", new Customer());
+		System.out.println("Hulton_Register");
+		model.addAttribute("customer", new Customer());
         findRooms.clear();
     	roomOrders.clear();
     	daysStay.clear();
@@ -438,7 +463,7 @@ public class Hulton_Controller {
   }
      
     
-/*###############################################################################################################################*/
+//###############################################################################################################################
     
     public void roomFree(String inDate,String outDate) {
     	List<Integer> invalid = new ArrayList<>();
