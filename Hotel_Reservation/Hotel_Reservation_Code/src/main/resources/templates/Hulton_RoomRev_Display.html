@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script	th:src="@{https://code.jquery.com/jquery-3.2.1.js}"></script>
+	<link th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css}" rel="stylesheet"/>
+	<script type="text/javascript">
+		function validateForm() {
+			var country = document.getElementById("country").value;
+			console.log("Country is "+ country);
+			var cLen = country.length;
+			var sstate = document.getElementById("state").value;
+			console.log("State is "+ state);
+			var sLen = sstate.length;
+			var checkIn = document.getElementById("checkIn").value;
+			var checkOut = document.getElementById("checkOut").value
+			console.log(checkIn);
+			console.log(checkOut);
+			if (sLen >= 1) {
+				alert("please enter country name");
+				return false;
+			}
+			else if (cLen >= 1){ 
+				alert("please enter state name");
+				return false; 
+			}
+			else if (checkIn===null || checkOut===null){
+				alert("Please enter check in and checkout dates");
+				return false;
+			}
+				
+			return true;
+		}
+	</script>
+	<style type="text/css">
+		.head{background: #2c3e50;}
+		.jumb{background-color:  #d9e6f2;}
+		.jumbotron{background-color:transparent !important;}
+		#selectd{color: green;}
+	</style>
+</head>
+<body>
+	<nav class="navbar navbar-inverse head">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-nav-demo" aria-expanded="false">
+			        <span class="sr-only">Toggle navigation</span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+      			</button>
+				<a href="Hulton_Home.html" class="navbar-brand">Hulton</a>
+			</div>
+			<div class="collapse navbar-collapse" id="bs-nav-demo">
+				<ul class="nav navbar-nav">
+					
+					<li><a id="selectd" href="#">Reservation</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a id ="usrCid" href="#">Welcome</a></li>
+					<li><a href="Hulton_Start_Home.html">Logout</a></li>
+					<li><a href="#">Register</a></li>
+					
+				</ul>
+			</div>
+		</div>
+	</nav>
+	
+	
+	<div class="container">
+		<h1>Congratulations your comment was successfully submitted!</h1>
+	    <p th:text="'Room: ' + ${roomReview.getRoomNo()}" /></p>
+    	<p th:text="'Check In Date: ' + ${roomReview.getCheckInDate()}" /></p>
+    	<p th:text="'Rating: ' + ${roomReview.getRating()}" /></p>
+   		<p th:text="'Comment: ' + ${roomReview.getComment()}" /></p>
+    	<a class="btn btn-success btn-lg" href="Hulton_Home.html" role="button">Go Home</a>
+    
+    <div class="row">
+			<div class="col-lg-12">
+				<div class="thumbnail">
+					<img src="http://cdn-image.travelandleisure.com/sites/default/files/styles/1600x1000/public/1494020442/62-tierra-atacama-boutique-hotel-and-spa-WBTOPHOTELS0505.jpg?itok=A2cqxQyJ"/>
+				</div>
+			</div>
+	</div>
+    
+    
+    </div>
+    
+       <script th:inline="javascript">
+		/*<![CDATA[*/
+		var usrCid = document.getElementById("usrCid");
+	    var message = sessionStorage.userCid;
+	    usrCid.textContent="Welcome! CID: " + message; 
+	    console.log(message);
+		/*]]>*/
+	</script>
+</body>
+</html>

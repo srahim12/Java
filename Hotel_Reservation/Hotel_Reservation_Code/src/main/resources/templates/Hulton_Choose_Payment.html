@@ -1,0 +1,148 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script	th:src="@{https://code.jquery.com/jquery-3.2.1.js}"></script>
+	<link th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css}" rel="stylesheet"/>
+	<script type="text/javascript">
+		function validateForm() {
+			var old = document.getElementById("old").value;
+			var newNum = document.getElementById("newNum").value;
+			var newAdd = document.getElementById("newAdd").value;
+			var newName = document.getElementById("newName").value;
+			var newSec = document.getElementById("newSec").value;
+			var newType = document.getElementById("newType").value;
+			var newExp = document.getElementById("newExp").value;
+			
+		
+			
+			if(old.length<1){
+				
+				if(newNum.length<1||newAdd.length<1||newName.length<1||newSec.length<1
+						||newType.length<1||newExp.length<1){
+					alert("Either enter previous card or fully enter new card information!");
+					return false
+				}
+			}
+			else if(old.length>0){
+				if(newNum.length>0||newAdd.length>0||newName.length>0||newSec.length>0
+						||newType.length>0||newExp.length>0){
+					alert("Either enter previous card or fully enter new card information!");
+					return false
+				}
+			}
+			return true;
+		}
+	</script>
+	<style type="text/css">
+		.head{background: #2c3e50;}
+		.jumb{background-color:  #d9e6f2;}
+		.jumbotron{background-color:transparent !important;}
+		#selectd{color: green;}
+	</style>
+</head>
+<body>
+	<nav class="navbar navbar-inverse head">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-nav-demo" aria-expanded="false">
+			        <span class="sr-only">Toggle navigation</span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+      			</button>
+				<a href="Hulton_Home.html" class="navbar-brand">Hulton</a>
+			</div>
+			<div class="collapse navbar-collapse" id="bs-nav-demo">
+				<ul class="nav navbar-nav">
+					
+					<li><a id="selectd" href="#">Reservation</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a id ="usrCid" href="#">Welcome</a></li>
+					<li><a href="Hulton_Start_Home.html">Logout</a></li>
+					<li><a href="#">Register</a></li>
+					
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div class="container">
+    <form name="myForm" onsubmit="return validateForm()" class="form-horizontal" action="#" th:action="@{/Hulton_Choose_Payment}" th:object="${payment}" method="post">
+    	<div class="form-group">
+			<label for="inputName" class="col-sm-2 control-label">Enter Previous Card Number:</label>
+		    <div class="col-sm-10">
+	  		    <input id="old" name="roomSel" type="text" class="form-control" th:field="*{oldNumber}" placeholder="Old Number"/>
+		    </div>
+		</div>
+		<p>OR Enter You new Credit Information below</p>
+		<div class="form-group">
+		    <label for="inputName" class="col-sm-2 control-label">Credit Card Number:</label>
+		    <div class="col-sm-10">
+	  		    <input id="newNum" name="roomSel" type="text" class="form-control" th:field="*{cNumber}" placeholder="Credit card number"/>
+		    </div>
+		</div>
+		
+		<div class="form-group">
+		    <label for="inputName" class="col-sm-2 control-label">Billing Address:</label>
+		    <div class="col-sm-10">
+	  		    <input id="newAdd" name="roomSel" type="text" class="form-control" th:field="*{bAddress}" placeholder="Billing address"/>
+		    </div>
+		</div>
+		
+		<div class="form-group">
+		    <label id="newName" for="inputName" class="col-sm-2 control-label">Name:</label>
+		    <div class="col-sm-10">
+	  		    <input id="newName" name="roomSel" type="text" class="form-control" th:field="*{name}" placeholder="Name"/>
+		    </div>
+		</div>
+		
+		<div class="form-group">
+		    <label for="inputName" class="col-sm-2 control-label">Sec Code:</label>
+		    <div class="col-sm-10">
+	  		    <input id="newSec" name="roomSel" type="text" class="form-control" th:field="*{code}" placeholder="Sec Code"/>
+		    </div>
+		</div>
+		
+		<div class="form-group">
+		    <label for="inputName" class="col-sm-2 control-label">Type:</label>
+		    <div class="col-sm-10">
+	  		    <input id="newType" name="roomSel" type="text" class="form-control" th:field="*{cType}" placeholder="Visa,Master"/>
+		    </div>
+		</div>
+		
+		<div class="form-group">
+		    <label for="inputName" class="col-sm-2 control-label">Expiration:</label>
+		    <div class="col-sm-10">
+	  		    <input id="newExp" name="roomSel" type="text" class="form-control" th:field="*{date}" placeholder="yyyy-mm-dd"/>
+		    </div>
+		</div>
+		
+		<div class="form-group">
+		    <div class="col-sm-offset-2 col-sm-10">
+				<input type="submit" class="btn btn-success btn-lg" value="Add Payment" onclick="validateForm()"/>
+		    </div>
+		</div>
+    </form>
+    <div class="row">
+			<div class="col-lg-12">
+				<div class="thumbnail">
+					<img src="http://cdn-image.travelandleisure.com/sites/default/files/styles/1600x1000/public/1494020442/62-tierra-atacama-boutique-hotel-and-spa-WBTOPHOTELS0505.jpg?itok=A2cqxQyJ"/>
+				</div>
+			</div>
+		</div>
+    
+    
+    </div>
+    
+       <script th:inline="javascript">
+		/*<![CDATA[*/
+		var usrCid = document.getElementById("usrCid");
+	    var message = sessionStorage.userCid;
+	    usrCid.textContent="Welcome! CID: " + message; 
+	    console.log(message);
+		/*]]>*/
+	</script>
+</body>
+</html>

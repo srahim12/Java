@@ -1,0 +1,118 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Form Submission</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<script th:src="@{https://code.jquery.com/jquery-3.2.1.js}"></script>
+<link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css}"/>
+<link rel="stylesheet" th:href="@{/resources/css/register.css}"/>
+<script type="text/javascript">
+		function cant(){
+			alert("Cant do that");
+			return false;
+		}
+		function validateForm() {
+			var hotelId = document.getElementById("hotelId").value;
+			var room = document.getElementById("room");
+			var breakf = document.getElementById("break");
+			var serv = document.getElementById("serv");
+			
+			if(hotelId.length<1 ||hotelId<1){
+				alert("Enter a valid hotel!");
+				return false;
+			}
+			else if(room.checked==false &&breakf.checked==false&&serv.checked==false){
+				alert("Pick a type of review!");
+				return false;
+			}
+			
+			return true;
+		}
+		
+	</script>
+<style type="text/css">
+		.head{
+			background: #2c3e50;
+		}
+
+		.jumb{
+			background-color:  #d9e6f2; 
+		}
+
+		.jumbotron{
+    		background-color:transparent !important; 
+		}
+		#selectd{
+			color: green;
+		}
+
+	</style>
+</head>
+<body>
+<nav class="navbar navbar-inverse head">
+<div class="container">
+<div class="navbar-header">
+<button aria-expanded="false" class="navbar-toggle collapsed" data-target="#bs-nav-demo" data-toggle="collapse" type="button">
+<span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</button>
+<a class="navbar-brand" href="/Hulton_Home">Hulton</a>
+</div>
+<div class="collapse navbar-collapse" id="bs-nav-demo">
+<ul class="nav navbar-nav">
+<li><a href="/Hulton_Reservation_LookUp" id="">Reservation</a></li>
+</ul>
+<ul class="nav navbar-nav navbar-right">
+<li><a href="/#"><p id="usrCid" th:text="'Welcome! ' +  'CID: ' +  ${4}"></p></a></li>
+<li><a href="/Hulton_Start_Home">Logout</a></li>
+<li><a href="/Hulton_Reservation_LookUp" onclick="cant()">Register</a></li>
+</ul>
+</div>
+</div>
+</nav>
+<div class="container">
+<form action="#" class="form-horizontal" method="post" name="myForm" onsubmit="return validateForm()" th:action="@{/Hulton_Review_Type}" th:object="${reviewType}">
+<div class="form-group">
+<label class="col-sm-2 control-label" for="inputAddress">HotelId</label>
+<div class="col-sm-10">
+<input class="form-control" id="hotelId" placeholder="Address" th:field="*{hotelId}" type="text"/>
+</div>
+</div>
+<div class="form-group">
+<label class="col-sm-2 control-label" for="inputEmail"> Review Type:</label>
+<div class="col-sm-10">
+<label class="col-sm-2 control-label" for="type1">Room</label>
+<input checked="" class="form-control" id="room" name="type" th:field="*{reviewType}" type="radio" value="Room"/>
+<label class="col-sm-2 control-label" for="type2">Breakfast</label>
+<input class="form-control" id="break" name="type" th:field="*{reviewType}" type="radio" value="Breakfast">
+<label class="col-sm-2 control-label" for="type3">Service</label>
+<input class="form-control" id="serv" name="type" th:field="*{reviewType}" type="radio" value="Service"/>
+</input></div>
+</div>
+<div class="form-group">
+<div class="col-sm-offset-2 col-sm-10">
+<input class="btn btn-success btn-lg" onclick="validateForm()" type="submit" value="Submit"/>
+</div>
+</div>
+</form>
+<div class="row">
+<div class="col-lg-12">
+<div class="thumbnail">
+<img src="http://cdn-image.travelandleisure.com/sites/default/files/styles/1600x1000/public/1494020442/62-tierra-atacama-boutique-hotel-and-spa-WBTOPHOTELS0505.jpg?itok=A2cqxQyJ"/>
+</div>
+</div>
+</div>
+</div>
+<script th:inline="javascript">
+		/*<![CDATA[*/
+		var usrCid = document.getElementById("usrCid");
+	    var message = sessionStorage.userCid;
+	    usrCid.textContent="Welcome! CID: " + message; 
+	    console.log(message);
+		/*]]>*/
+	</script>
+</body>
+</html>

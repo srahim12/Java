@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>LogIn</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<script th:src="@{https://code.jquery.com/jquery-3.2.1.js}"></script>
+<link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css}"/>
+<link rel="stylesheet" th:href="@{/resources/css/register.css}"/>
+<style type="text/css">
+		.head{
+			background: #2c3e50;
+		}
+
+		.jumb{
+			background-color:  #d9e6f2; 
+		}
+
+		.jumbotron{
+    		background-color:transparent !important; 
+		}
+
+		.marg{
+			margin-top: 150px;
+		}
+		#selectd{
+			color: green;
+		}
+
+	</style>
+<script type="text/javascript">
+		function validateForm(){
+			var login = document.getElementById("login").value;
+			if(login.length<1){
+				alert("Please enter a valid CID!");
+				return false;
+			}
+			return true;
+		}
+		function logOut(){
+			alert("Please Register or login");
+		}
+		
+		
+	
+	
+	</script>
+</head>
+<body>
+<nav class="navbar navbar-inverse head">
+<div class="container">
+<div class="navbar-header">
+<button aria-expanded="false" class="navbar-toggle collapsed" data-target="#bs-nav-demo" data-toggle="collapse" type="button">
+<span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</button>
+<a class="navbar-brand" href="/Hulton_Start_Home">Hulton</a>
+</div>
+<div class="collapse navbar-collapse" id="bs-nav-demo">
+<ul class="nav navbar-nav">
+<li><a href="/Hulton_Login" onclick="logOut()">Reservation</a></li>
+</ul>
+<ul class="nav navbar-nav navbar-right">
+<li><a href="/#" id="selectd">Login</a></li>
+<li><a href="/Hulton_Login" onclick="logOut()">Logout</a></li>
+<li><a href="/Hulton_Register">Register</a></li>
+</ul>
+</div>
+</div>
+</nav>
+<div class="container">
+<form action="#" class="form-horizontal marg" method="post" name="myForm" onsubmit="return validateForm()" th:action="@{/Hulton_Login}" th:object="${login}">
+<div class="form-group">
+<label class="col-sm-2 control-label" for="inputPassword3">CID</label>
+<div class="col-sm-10">
+<input class="form-control" id="login" placeholder="Cid" th:field="*{cid}" type="password"/>
+</div>
+</div>
+<div class="form-group">
+<div class="col-sm-offset-2 col-sm-10">
+<input class="btn btn-success btn-lg" onclick="validateForm()" type="submit" value="Login"/>
+</div>
+</div>
+</form>
+<div class="row">
+<div class="col-lg-12">
+<div class="thumbnail">
+<img src="https://media-cdn.tripadvisor.com/media/photo-s/0a/f3/f8/bb/three-bedroom-villa-swimming.jpg"/>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script	th:src="@{https://code.jquery.com/jquery-3.2.1.js}"></script>
+	<link th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css}" rel="stylesheet"/>
+	<link th:href="@{/resources/css/register.css}" rel="stylesheet"/>
+	<script type="text/javascript">
+		function logOut(){
+			alert("Please Register or login");
+		}
+		function validateForm() {
+			var name = document.getElementById("name").value;
+			var len = name.length;
+			var addr = document.getElementById("address").value;
+			var len1 = addr.length;
+			var phone = document.getElementById("phone").value;
+			var len2 = name.length;
+			if(len<=4){
+				alert("Enter name greater than 4 characters");
+				return false;
+			}
+			else if(len1<=5){
+				alert("Enter address greater than 5 characters");
+				return false;
+			}
+			else if(isNaN(phone)){
+				alert("Enter valid phone");
+				return false;
+			}
+			
+			return true;
+		}
+		
+	</script>
+	<style type="text/css">
+		.head{
+			background: #2c3e50;
+		}
+
+		.jumb{
+			background-color:  #d9e6f2; 
+		}
+
+		.jumbotron{
+    		background-color:transparent !important; 
+		}
+		#selectd{
+			color: green;
+		}
+
+	</style>
+	
+</head>
+<body>
+
+	<nav class="navbar navbar-inverse head">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-nav-demo" aria-expanded="false">
+			        <span class="sr-only">Toggle navigation</span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+      			</button>
+				<a href="Hulton_Start_Home.html" class="navbar-brand">Hulton</a>
+			</div>
+			<div class="collapse navbar-collapse" id="bs-nav-demo">
+				<ul class="nav navbar-nav">
+					
+					<li><a onclick="logOut()" href="Hulton_Register.html">Reservation</a></li>
+				</ul>
+
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="Hulton_Login.html">Login</a></li>
+					<li><a onclick="logOut()" href="Hulton_Register.html">Logout</a></li>
+					<li><a id="selectd" href="Hulton_Register.html">Register</a></li>
+					
+				</ul>
+			</div>
+			
+		</div>
+	</nav>
+	
+	<div class="container">
+    <form name="myForm" onsubmit="return validateForm()" class="form-horizontal" action="#" th:action="@{/Hulton_Register}" th:object="${customer}" method="post">
+    	<div class="form-group">
+		    <label for="inputName" class="col-sm-2 control-label">Name</label>
+		    <div class="col-sm-10">
+	  		    <input id="name" name="nameIn" type="text" class="form-control" th:field="*{name}" placeholder="Name"/>
+		    </div>
+		</div>
+        
+        <div class="form-group">
+		    <label for="inputAddress" class="col-sm-2 control-label">Address</label>
+		    <div class="col-sm-10">
+	  		    <input id="address" type="text" class="form-control" th:field="*{address}" placeholder="Address">
+		    </div>
+		</div>
+		
+		<div class="form-group">
+		    <label for="inputPhone" class="col-sm-2 control-label">Phone</label>
+		    <div class="col-sm-10">
+	  		    <input id="phone" type="text" class="form-control" th:field="*{phone}" placeholder="Phone"/>
+		    </div>
+		</div>
+        
+        <div class="form-group">
+		    <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+		    <div class="col-sm-10">
+	  		    <input id="email" type="email" class="form-control" th:field="*{email}" placeholder="Email" required/>
+		    </div>
+		</div>
+		              
+		<div class="form-group">
+		    <div class="col-sm-offset-2 col-sm-10">
+				<input type="submit" class="btn btn-success btn-lg" value="Register" onclick="validateForm()"/>
+		    </div>
+		</div>
+    </form>
+    
+    <div class="row">
+			<div class="col-lg-12">
+				<div class="thumbnail">
+					<img src="http://cdn-image.travelandleisure.com/sites/default/files/styles/1600x1000/public/1494020442/62-tierra-atacama-boutique-hotel-and-spa-WBTOPHOTELS0505.jpg?itok=A2cqxQyJ"/>
+				</div>
+			</div>
+		</div>
+    
+    
+    </div>
+</body>
+</html>
